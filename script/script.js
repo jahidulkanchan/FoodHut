@@ -12,7 +12,7 @@ const getAllFoods = async() =>{
 
 const displayAllFoods = (data) => {
   const foodContainer = document.getElementById('food-container');
-  const showAllItem = document.getElementById('details-modal');
+  const showAllItem = document.getElementById('show-all');
   showAllItem.addEventListener('click', () => {
     renderFoods(data); 
   });
