@@ -25,29 +25,49 @@ const displayAllFoods = (data) => {
         <div class="md:col-span-2"><img class="max-h-[200px]" src="${item.strCategoryThumb}" alt=""></div>
         <div class="md:col-span-3">
           <h3 class="text-2xl font-bold">${item.strCategory}</h3>
-          <p>${item.strCategoryDescription}</p>
+          <p class="h-[100px] overflow-hidden">${item.strCategoryDescription}</p>
           <button class="text-xl view-btn font-semibold text-orange-300 underline">View Details</button>
         </div>
       `;
-      const detailsModal = document.getElementById('details-modal');
-      const viewBtn = document.getElementsByClassName('view-btn');
-      for(btn of viewBtn){
+      foodContainer.appendChild(foodCart);
+      showModal()
+    });
+  }
+  // Show Details Modal =================================================
+  const showModal = ()=>{
+    const viewBtn = document.getElementsByClassName('view-btn');
+    for(const btn of viewBtn){
       btn.addEventListener('click', ()=>{
         detailsModal.classList.remove('hidden');
       })
     }
-      foodContainer.appendChild(foodCart);
-    });
-    
   }
+    // Show Modal Information ============================
+    const detailsModal = document.getElementById('details-modal');
+    const modalDiv = document.createElement('div');
+    modalDiv.classList.add('modal', 'min-h-[200px]', 'w-11/12', 'md:w-1/2', 'bg-orange-300', 'p-3')
+    modalDiv.innerHTML = `
+    <p class="mt-10">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Dignissimos, nostrum eius? Accusamus, maiores suscipit sapiente ut
+      esse quasi quo, soluta est aperiam dolor illum eaque inventore, ab
+      exercitationem voluptatibus dignissimos!
+    </p>
+    <button id="close-btn" class="bg-white px-5 py-2 rounded-md float-end ">Close</button>
+    `
+    detailsModal.appendChild(modalDiv)
+    document.getElementById('close-btn').addEventListener('click', () =>{
+      detailsModal.classList.add('hidden')
+    })
+
+
+  
+
+
+
+
   let sliceData = data.slice(0, 4);
   renderFoods(sliceData);
 };
 
-
-const detailsModal = document.getElementById('details-modal');
-
-document.getElementById('close-btn').addEventListener('click', () =>{
-  detailsModal.classList.add('hidden')
-})
 getAllFoods()
